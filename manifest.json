@@ -1,0 +1,17 @@
+{
+    "name": "My Schedule",
+    "short_name": "時間割",
+    "description": "Appleスタイルのミニマルな時間割アプリ",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#f5f5f7",
+    "theme_color": "#0071e3",
+    "icons": [
+        {
+            "src": "icon.svg",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ]
+}

@@ -52,11 +52,51 @@
     ]
   },
   "weekB": {
-    "Mon": [],
-    "Tue": [],
-    "Wed": [],
-    "Thu": [],
-    "Fri": [],
-    "Sat": []
+    "Mon": [
+      { "title": "漢文", "teacher": "神保" },
+      { "title": "現代文", "teacher": "山藤" },
+      { "title": "数Ⅲ", "teacher": "望月" },
+      { "title": "物理", "teacher": "永江" },
+      { "title": "理地歴", "teacher": "石/沖/川" },
+      { "title": "英語Ⅱ", "teacher": "川崎" }
+    ],
+    "Tue": [
+      { "title": "体育", "teacher": "吉田薫" },
+      { "title": "物理", "teacher": "永江" },
+      { "title": "地歴", "teacher": "石/沖/川" },
+      { "title": "数演習", "teacher": "小宮" },
+      { "title": "古文", "teacher": "野谷" },
+      { "title": "理数探", "teacher": "名/北/出" }
+    ],
+    "Wed": [
+      { "title": "数C", "teacher": "藤倉" },
+      { "title": "現代文", "teacher": "山藤" },
+      { "title": "地歴", "teacher": "石/沖/川" },
+      { "title": "化学", "teacher": "淡野" },
+      { "title": "英語Ⅲ", "teacher": "ウェスリー" },
+      { "title": "英語Ⅰ", "teacher": "脇濱" }
+    ],
+    "Thu": [
+      { "title": "数C", "teacher": "藤倉" },
+      { "title": "数Ⅲ", "teacher": "望月" },
+      { "title": "物理", "teacher": "永江" },
+      { "title": "体育", "teacher": "吉田薫" },
+      { "title": "化学", "teacher": "淡野" },
+      { "title": "英語Ⅰ", "teacher": "脇濱" }
+    ],
+    "Fri": [
+      { "title": "古文", "teacher": "野谷" },
+      { "title": "数Ⅲ", "teacher": "望月" },
+      { "title": "英語Ⅲ", "teacher": "ウェスリー" },
+      { "title": "英語Ⅱ", "teacher": "川崎" },
+      { "title": "現代文", "teacher": "山藤" },
+      { "title": "体育", "teacher": "吉田薫" }
+    ],
+    "Sat": [
+      { "title": "漢文", "teacher": "神保" },
+      { "title": "英語Ⅰ", "teacher": "脇濱" },
+      { "title": "化学", "teacher": "淡野" },
+      { "title": "数演習", "teacher": "小宮" }
+    ]
   }
 }

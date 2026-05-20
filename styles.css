@@ -1,0 +1,229 @@
+:root {
+    --bg-color: #f5f5f7;
+    --card-bg: #ffffff;
+    --text-primary: #1d1d1f;
+    --text-secondary: #86868b;
+    --accent-color: #0071e3;
+    --accent-bg: rgba(0, 113, 227, 0.05);
+    --border-radius: 18px;
+    --header-bg: rgba(245, 245, 247, 0.85);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    --highlight-bg: rgba(0, 113, 227, 0.04);
+}
+
+[data-theme="dark"] {
+    --bg-color: #000000;
+    --card-bg: #1c1c1e;
+    --text-primary: #f5f5f7;
+    --text-secondary: #8e8e93;
+    --accent-color: #0a84ff;
+    --accent-bg: rgba(10, 132, 255, 0.1);
+    --header-bg: rgba(0, 0, 0, 0.85);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    --highlight-bg: rgba(10, 132, 255, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.47;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+#app {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: env(safe-area-inset-top) 20px 40px;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    background-color: var(--header-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 100;
+    margin: 0 -20px;
+    padding: 12px 20px 8px;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+h1 {
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-primary);
+}
+
+.header-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.week-label {
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--accent-color);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.02em;
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+#theme-toggle svg {
+    width: 18px;
+    height: 18px;
+}
+
+.moon-icon, [data-theme="dark"] .sun-icon {
+    display: none;
+}
+
+[data-theme="dark"] .moon-icon {
+    display: block;
+}
+
+.day-selector {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 4px;
+}
+
+.day-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 10px 0;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.day-btn.active {
+    color: var(--accent-color);
+    font-weight: 700;
+    background: var(--accent-bg);
+}
+
+main {
+    margin-top: 20px;
+}
+
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    padding: 18px 24px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* 両端に寄せる */
+    gap: 16px;
+    animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card.highlight {
+    background-color: var(--highlight-bg);
+    box-shadow: inset 0 0 0 1px var(--accent-bg), var(--shadow);
+}
+
+.card-num {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    background: var(--bg-color);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.card.highlight .card-num {
+    color: var(--accent-color);
+    background: var(--accent-bg);
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    justify-content: space-between; /* タイトルと教員名を左右に配置 */
+    align-items: center;
+}
+
+.card-title {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.card-teacher {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-align: right;
+}
+
+.no-classes {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--text-secondary);
+    font-size: 16px;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-secondary);
+}
+
+/* Desktop optimization */
+@media (min-width: 601px) {
+    #app {
+        padding-top: 40px;
+    }
+}
