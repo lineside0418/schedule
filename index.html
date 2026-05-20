@@ -7,7 +7,6 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <style>
     :root{--bg:#f7fafc;--card:#fff;--muted:#6b7280;--accent:#06b6d4}
@@ -19,8 +18,8 @@
     @media(min-width:768px){.container-max{max-width:820px;margin:0 auto}}
     textarea{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,"Roboto Mono",monospace}
     .error-box{background:#fff7f7;border:1px solid #fecaca;color:#991b1b;padding:10px;border-radius:8px}
-    .hint{font-size:12px;color:#475569}
     .teacher{font-size:12px;color:#64748b}
+    .hidden{display:none}
   </style>
 </head>
 <body>
@@ -28,7 +27,7 @@
     <header class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
       <div>
         <h1 class="text-2xl font-semibold">今日の時間割</h1>
-        <p class="text-sm muted mt-1">同階層の <code class="bg-gray-100 px-1 py-0.5 rounded">schedule.json</code> を読み込みます。隔週設定は JSON の <strong>settings</strong> で制御。</p>
+        <p class="text-sm muted mt-1">同階層の schedule.json を読み込みます。隔週設定は JSON の settings で制御。</p>
       </div>
 
       <div class="flex items-center gap-3">
@@ -36,7 +35,7 @@
           <span id="todayLabel" class="font-medium"></span>
           <span id="weekParity" class="text-xs muted"></span>
         </div>
-        <button id="openSettings" class="card px-3 py-2 text-sm hover:shadow-md">設定</button>
+        <button id="openSettings" class="card px-3 py-2 text-sm hover:shadow-md" type="button">設定</button>
       </div>
     </header>
 
@@ -53,19 +52,20 @@
             <label class="text-sm muted">自動</label>
             <div class="relative inline-flex items-center">
               <input id="manualToggle" type="checkbox" class="sr-only" aria-label="手動切替" />
-              <div class="w-11 h-6 bg-gray-200 rounded-full peer-checked:bg-teal-400 transition-colors"></div>
-              <div class="absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow transform peer-checked:translate-x-5 transition-transform"></div>
+              <div class="w-11 h-6 bg-gray-200 rounded-full transition-colors"></div>
+              <div class="absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow transform transition-transform"></div>
             </div>
             <label class="text-sm muted">手動</label>
           </div>
           <div class="flex items-center gap-2">
-            <button id="manualA" class="px-3 py-1 text-xs border rounded">手動: A</button>
-            <button id="manualB" class="px-3 py-1 text-xs border rounded">手動: B</button>
+            <button id="manualA" class="px-3 py-1 text-xs border rounded" type="button">手動: A</button>
+            <button id="manualB" class="px-3 py-1 text-xs border rounded" type="button">手動: B</button>
           </div>
         </div>
       </div>
 
-      <div id="errorArea" class="mt-3"></div>
+      <!-- エラー表示領域（デバッグ用。後で削除可） -->
+      <div id="errorArea" class="mt-3" aria-live="polite"></div>
 
       <div id="periodList" class="grid gap-3 mt-4"></div>
 
@@ -75,25 +75,25 @@
     </section>
 
     <!-- Settings modal -->
-    <div id="settingsModal" class="fixed inset-0 z-40 hidden items-center justify-center p-4">
+    <div id="settingsModal" class="fixed inset-0 z-40 hidden items-center justify-center p-4" role="dialog" aria-modal="true">
       <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" id="modalBackdrop" tabindex="-1"></div>
       <div class="relative w-full max-w-2xl card p-4 z-50">
         <div class="flex items-start justify-between mb-3">
           <h3 class="text-lg font-semibold">時間割設定（schedule.json / ローカル編集）</h3>
           <div class="flex items-center gap-2">
-            <button id="reloadFromFile" class="px-3 py-1 text-sm border rounded">ファイル再読込</button>
-            <button id="closeSettings" class="text-gray-500 hover:text-gray-700">閉じる</button>
+            <button id="reloadFromFile" class="px-3 py-1 text-sm border rounded" type="button">ファイル再読込</button>
+            <button id="closeSettings" class="text-gray-500 hover:text-gray-700" type="button">閉じる</button>
           </div>
         </div>
 
-        <p class="text-sm muted mb-3">JSON の先頭に <code class="bg-gray-100 px-1 py-0.5 rounded">settings</code> を置くと、奇数週/偶数週の割当を変更できます。編集を保存するとブラウザの localStorage に保存されます。</p>
+        <p class="text-sm muted mb-3">JSON の先頭に settings を置くと、奇数週/偶数週の割当を変更できます。編集を保存するとブラウザの localStorage に保存されます。</p>
 
         <textarea id="jsonEditor" class="w-full h-64 p-3 border rounded text-sm font-mono" spellcheck="false" aria-label="時間割JSON編集"></textarea>
 
         <div class="mt-3 flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <button id="saveJson" class="px-4 py-2 bg-teal-500 text-white rounded hover:bg-teal-600">保存（local）</button>
-            <button id="resetJson" class="px-4 py-2 border rounded text-sm">local をクリア</button>
+            <button id="saveJson" class="px-4 py-2 bg-teal-500 text-white rounded hover:bg-teal-600" type="button">保存（local）</button>
+            <button id="resetJson" class="px-4 py-2 border rounded text-sm" type="button">local をクリア</button>
           </div>
           <div class="text-sm muted">localStorage と schedule.json の組合せで動作します。</div>
         </div>
@@ -101,20 +101,23 @@
     </div>
 
     <footer class="mt-6 text-xs muted text-center">
-      <div>このファイルと <code class="bg-gray-100 px-1 py-0.5 rounded">schedule.json</code> を同じリポジトリに置いて GitHub Pages にデプロイしてください。</div>
+      <div>このファイルと schedule.json を同じリポジトリに置いて GitHub Pages にデプロイしてください。</div>
     </footer>
   </main>
 
   <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // --- 設定 ---
     const SCHEDULE_FILE = 'schedule.json';
     const STORAGE_KEY = 'timetable_json_v3';
+    const MANUAL_KEY = 'timetable_manual_choice';
     const DEFAULT_JSON = {
-      "settings": { "oddWeek": "weekA", "evenWeek": "weekB" },
-      "weekA": { "Mon": [], "Tue": [], "Wed": [], "Thu": [], "Fri": [], "Sat": [] },
-      "weekB": { "Mon": [], "Tue": [], "Wed": [], "Thu": [], "Fri": [], "Sat": [] }
+      settings: { oddWeek: 'weekA', evenWeek: 'weekB' },
+      weekA: { Mon: [], Tue: [], Wed: [], Thu: [], Fri: [], Sat: [] },
+      weekB: { Mon: [], Tue: [], Wed: [], Thu: [], Fri: [], Sat: [] }
     };
 
-    // DOM
+    // --- DOM ---
     const todayLabel = document.getElementById('todayLabel');
     const weekParityEl = document.getElementById('weekParity');
     const dayTitle = document.getElementById('dayTitle');
@@ -140,6 +143,7 @@
     let localSchedule = null;
     let timetable = null;
 
+    // --- ユーティリティ ---
     function getISOWeekNumber(date){
       const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
       const dayNum = d.getUTCDay() || 7;
@@ -147,78 +151,65 @@
       const yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
       return Math.ceil((((d - yearStart) / 86400000) + 1)/7);
     }
-    function isOddWeek(date){
-      return (getISOWeekNumber(date) % 2) === 1;
-    }
-    function escapeHtml(str){
-      if(!str) return '';
-      return String(str).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
-    }
+    function isOddWeek(date){ return (getISOWeekNumber(date) % 2) === 1; }
+    function escapeHtml(str){ if(!str) return ''; return String(str).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;'); }
 
-    // try multiple candidate paths to handle GitHub Pages repo base path
+    // GitHub Pages のベースパス差に対応する候補を作る
     function candidatePaths(){
       const paths = [];
-      // 1) same directory relative
       paths.push('./' + SCHEDULE_FILE);
       paths.push(SCHEDULE_FILE);
-      // 2) try using current pathname base (handles /repo/ or /repo/index.html)
+      // ページが /repo/ や /repo/index.html の場合に対応
       const p = location.pathname;
       const base = p.endsWith('/') ? p : p.replace(/\/[^\/]*$/, '/');
       paths.push(base + SCHEDULE_FILE);
-      // 3) root
+      // ルート
       paths.push('/' + SCHEDULE_FILE);
-      // unique
       return [...new Set(paths)];
     }
 
+    // エラーを画面に表示（後で削除できる）
+    function showError(msg){
+      errorArea.innerHTML = `<div class="error-box"><strong>読み込みエラー</strong><div class="hint mt-1">${escapeHtml(String(msg))}</div></div>`;
+    }
+    function clearError(){ errorArea.innerHTML = ''; }
+
+    // fetch schedule.json（候補パスを順に試す）
     async function fetchScheduleFile(){
-      errorArea.innerHTML = '';
+      clearError();
       const candidates = candidatePaths();
       let lastError = null;
       for(const path of candidates){
         try {
-          console.log('trying fetch', path);
           const res = await fetch(path + '?t=' + Date.now(), {cache: 'no-store'});
           if(!res.ok){
             lastError = new Error('HTTP ' + res.status + ' for ' + path);
-            console.warn(lastError);
             continue;
           }
           const text = await res.text();
           try {
             const json = JSON.parse(text);
             fileSchedule = json;
-            console.log('loaded schedule.json from', path, json);
             return true;
           } catch(parseErr){
-            lastError = new Error('JSON parse error for ' + path + ': ' + parseErr.message);
-            console.error(lastError);
-            // show parse error and stop trying other paths (likely same file)
             showError('schedule.json の構文エラー: ' + parseErr.message);
+            fileSchedule = null;
             return false;
           }
         } catch(e){
           lastError = e;
-          console.warn('fetch failed for', path, e);
           continue;
         }
       }
-      // 全候補失敗
-      console.error('all fetch attempts failed', lastError);
-      showError('schedule.json の取得に失敗しました。Network/配置/ファイル名を確認してください。Console に詳細があります。');
+      showError('schedule.json の取得に失敗しました。ファイル配置・ファイル名・公開ブランチを確認してください。');
       fileSchedule = null;
       return false;
-    }
-
-    function showError(msg){
-      errorArea.innerHTML = `<div class="error-box"><strong>読み込みエラー</strong><div class="hint mt-1">${escapeHtml(String(msg))}</div></div>`;
     }
 
     function loadLocalSchedule(){
       const raw = localStorage.getItem(STORAGE_KEY);
       if(!raw) return null;
-      try { return JSON.parse(raw); }
-      catch(e){ console.warn('local JSON parse error', e); return null; }
+      try { return JSON.parse(raw); } catch(e){ return null; }
     }
 
     function normalizeSubjects(arr){
@@ -251,6 +242,7 @@
       return ranges[period] || '';
     }
 
+    // --- レンダリング ---
     function render(){
       const day = now.getDate();
       const month = now.getMonth() + 1;
@@ -263,7 +255,7 @@
       const mapEven = settings?.evenWeek || 'weekB';
 
       const manual = manualToggle.checked;
-      const manualChoice = localStorage.getItem('timetable_manual_choice') || manualToggle.dataset.manual || null;
+      const manualChoice = localStorage.getItem(MANUAL_KEY) || manualToggle.dataset.manual || null;
       weekParityEl.textContent = manual
         ? (manualChoice === 'A' ? '手動: A' : (manualChoice === 'B' ? '手動: B' : '手動'))
         : (autoOdd ? `自動: ${mapOdd}` : `自動: ${mapEven}`);
@@ -307,11 +299,9 @@
         `;
         periodList.appendChild(el);
       });
-
-      gsap.fromTo('#periodList > div', {y:8, opacity:0}, {y:0, opacity:1, stagger:0.06, duration:0.45, ease:'power2.out'});
     }
 
-    // modal
+    // --- モーダル操作 / 保存 ---
     function openSettingsModal(){
       const show = localSchedule || fileSchedule || DEFAULT_JSON;
       jsonEditor.value = JSON.stringify(show, null, 2);
@@ -361,14 +351,14 @@
       }
     }
 
-    // events
+    // --- イベントバインド ---
     manualToggle.addEventListener('change', () => {
       if(manualToggle.checked){
         const current = isOddWeek(now) ? 'A' : 'B';
-        manualToggle.dataset.manual = localStorage.getItem('timetable_manual_choice') || current;
-        localStorage.setItem('timetable_manual_choice', manualToggle.dataset.manual);
+        manualToggle.dataset.manual = localStorage.getItem(MANUAL_KEY) || current;
+        localStorage.setItem(MANUAL_KEY, manualToggle.dataset.manual);
       } else {
-        localStorage.removeItem('timetable_manual_choice');
+        localStorage.removeItem(MANUAL_KEY);
         delete manualToggle.dataset.manual;
       }
       render();
@@ -376,13 +366,13 @@
     manualA.addEventListener('click', () => {
       manualToggle.checked = true;
       manualToggle.dataset.manual = 'A';
-      localStorage.setItem('timetable_manual_choice', 'A');
+      localStorage.setItem(MANUAL_KEY, 'A');
       render();
     });
     manualB.addEventListener('click', () => {
       manualToggle.checked = true;
       manualToggle.dataset.manual = 'B';
-      localStorage.setItem('timetable_manual_choice', 'B');
+      localStorage.setItem(MANUAL_KEY, 'B');
       render();
     });
 
@@ -393,25 +383,24 @@
     resetJson.addEventListener('click', resetToDefault);
     reloadFromFile.addEventListener('click', reloadFromFile);
 
-    // init
+    // --- 初期化 ---
     (async function init(){
       const ok = await fetchScheduleFile();
       localSchedule = loadLocalSchedule();
       composeTimetable();
-      // restore manual toggle state
-      const savedManual = localStorage.getItem('timetable_manual_choice');
+      const savedManual = localStorage.getItem(MANUAL_KEY);
       if(savedManual){ manualToggle.checked = true; manualToggle.dataset.manual = savedManual; }
       else manualToggle.checked = false;
       render();
-      const weekNo = getISOWeekNumber(now);
-      weekParityEl.title = `ISO週番号: ${weekNo}`;
       if(!ok && !fileSchedule){
-        // fallback: use DEFAULT_JSON but inform user
+        // フォールバックで動かす（画面にエラーは出ている）
         fileSchedule = DEFAULT_JSON;
         composeTimetable();
         render();
       }
     })();
+
+  }); // DOMContentLoaded end
   </script>
 </body>
 </html>
