@@ -70,11 +70,11 @@
     ],
     "Wed": [
       { "title": "数C", "teacher": "藤倉" },
-      { "title": "現代文", "teacher": "山藤" },
+      { "title": "古文", "teacher": "野谷" },
       { "title": "地歴", "teacher": "石/沖/川" },
       { "title": "化学", "teacher": "淡野" },
       { "title": "英語Ⅲ", "teacher": "ウェスリー" },
-      { "title": "英語Ⅰ", "teacher": "脇濱" }
+      { "title": "英語Ⅱ", "teacher": "川崎" }
     ],
     "Thu": [
       { "title": "数C", "teacher": "藤倉" },
