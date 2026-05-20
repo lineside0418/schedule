@@ -1,0 +1,102 @@
+{
+  "settings": {
+    "oddWeek": "weekA",
+    "evenWeek": "weekB"
+  },
+  "weekA": {
+    "Mon": [
+      { "title": "数学", "teacher": "田中先生" },
+      { "title": "英語", "teacher": "佐藤先生" },
+      { "title": "物理", "teacher": "高橋先生" },
+      { "title": "体育", "teacher": "山本先生" },
+      { "title": "美術", "teacher": "小林先生" },
+      { "title": "現代文", "teacher": "伊藤先生" }
+    ],
+    "Tue": [
+      { "title": "英語", "teacher": "佐藤先生" },
+      { "title": "数学", "teacher": "田中先生" },
+      { "title": "化学", "teacher": "中村先生" },
+      { "title": "地理", "teacher": "斎藤先生" },
+      { "title": "音楽", "teacher": "松本先生" },
+      { "title": "情報", "teacher": "石井先生" }
+    ],
+    "Wed": [
+      { "title": "現代文", "teacher": "伊藤先生" },
+      { "title": "英語", "teacher": "佐藤先生" },
+      { "title": "数学", "teacher": "田中先生" },
+      { "title": "生物", "teacher": "鈴木先生" },
+      { "title": "体育", "teacher": "山本先生" },
+      { "title": "美術", "teacher": "小林先生" }
+    ],
+    "Thu": [
+      { "title": "数学", "teacher": "田中先生" },
+      { "title": "化学", "teacher": "中村先生" },
+      { "title": "英語", "teacher": "佐藤先生" },
+      { "title": "歴史", "teacher": "森田先生" },
+      { "title": "情報", "teacher": "石井先生" },
+      { "title": "選択A", "teacher": "選択担当" }
+    ],
+    "Fri": [
+      { "title": "英語", "teacher": "佐藤先生" },
+      { "title": "現代文", "teacher": "伊藤先生" },
+      { "title": "数学", "teacher": "田中先生" },
+      { "title": "物理", "teacher": "高橋先生" },
+      { "title": "選択B", "teacher": "選択担当" },
+      { "title": "LHR", "teacher": "担任" }
+    ],
+    "Sat": [
+      { "title": "数学", "teacher": "田中先生" },
+      { "title": "英語", "teacher": "佐藤先生" },
+      { "title": "理科", "teacher": "理科担当" },
+      { "title": "社会", "teacher": "社会担当" }
+    ]
+  },
+  "weekB": {
+    "Mon": [
+      { "title": "英語", "teacher": "佐藤先生" },
+      { "title": "数学", "teacher": "田中先生" },
+      { "title": "化学", "teacher": "中村先生" },
+      { "title": "体育", "teacher": "山本先生" },
+      { "title": "美術", "teacher": "小林先生" },
+      { "title": "現代文", "teacher": "伊藤先生" }
+    ],
+    "Tue": [
+      { "title": "数学", "teacher": "田中先生" },
+      { "title": "英語", "teacher": "佐藤先生" },
+      { "title": "物理", "teacher": "高橋先生" },
+      { "title": "地理", "teacher": "斎藤先生" },
+      { "title": "音楽", "teacher": "松本先生" },
+      { "title": "情報", "teacher": "石井先生" }
+    ],
+    "Wed": [
+      { "title": "英語", "teacher": "佐藤先生" },
+      { "title": "現代文", "teacher": "伊藤先生" },
+      { "title": "数学", "teacher": "田中先生" },
+      { "title": "生物", "teacher": "鈴木先生" },
+      { "title": "体育", "teacher": "山本先生" },
+      { "title": "美術", "teacher": "小林先生" }
+    ],
+    "Thu": [
+      { "title": "化学", "teacher": "中村先生" },
+      { "title": "数学", "teacher": "田中先生" },
+      { "title": "英語", "teacher": "佐藤先生" },
+      { "title": "歴史", "teacher": "森田先生" },
+      { "title": "情報", "teacher": "石井先生" },
+      { "title": "選択A", "teacher": "選択担当" }
+    ],
+    "Fri": [
+      { "title": "現代文", "teacher": "伊藤先生" },
+      { "title": "英語", "teacher": "佐藤先生" },
+      { "title": "数学", "teacher": "田中先生" },
+      { "title": "物理", "teacher": "高橋先生" },
+      { "title": "選択B", "teacher": "選択担当" },
+      { "title": "LHR", "teacher": "担任" }
+    ],
+    "Sat": [
+      { "title": "英語", "teacher": "佐藤先生" },
+      { "title": "数学", "teacher": "田中先生" },
+      { "title": "理科", "teacher": "理科担当" },
+      { "title": "家庭", "teacher": "家庭担当" }
+    ]
+  }
+}
