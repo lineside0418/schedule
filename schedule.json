@@ -5,98 +5,58 @@
   },
   "weekA": {
     "Mon": [
-      { "title": "数学", "teacher": "田中先生" },
-      { "title": "英語", "teacher": "佐藤先生" },
-      { "title": "物理", "teacher": "高橋先生" },
-      { "title": "体育", "teacher": "山本先生" },
-      { "title": "美術", "teacher": "小林先生" },
-      { "title": "現代文", "teacher": "伊藤先生" }
+      { "title": "漢文", "teacher": "神保" },
+      { "title": "現代文", "teacher": "山藤" },
+      { "title": "数Ⅲ", "teacher": "望月" },
+      { "title": "物理", "teacher": "永江" },
+      { "title": "理地歴", "teacher": "石/沖/川" },
+      { "title": "英語Ⅱ", "teacher": "川崎" }
     ],
     "Tue": [
-      { "title": "英語", "teacher": "佐藤先生" },
-      { "title": "数学", "teacher": "田中先生" },
-      { "title": "化学", "teacher": "中村先生" },
-      { "title": "地理", "teacher": "斎藤先生" },
-      { "title": "音楽", "teacher": "松本先生" },
-      { "title": "情報", "teacher": "石井先生" }
+      { "title": "体育", "teacher": "吉田薫" },
+      { "title": "物理", "teacher": "永江" },
+      { "title": "地歴", "teacher": "石/沖/川" },
+      { "title": "数演習", "teacher": "小宮" },
+      { "title": "古文", "teacher": "野谷" },
+      { "title": "理数探", "teacher": "名/北/出" }
     ],
     "Wed": [
-      { "title": "現代文", "teacher": "伊藤先生" },
-      { "title": "英語", "teacher": "佐藤先生" },
-      { "title": "数学", "teacher": "田中先生" },
-      { "title": "生物", "teacher": "鈴木先生" },
-      { "title": "体育", "teacher": "山本先生" },
-      { "title": "美術", "teacher": "小林先生" }
+      { "title": "数C", "teacher": "藤倉" },
+      { "title": "現代文", "teacher": "山藤" },
+      { "title": "地歴", "teacher": "石/沖/川" },
+      { "title": "化学", "teacher": "淡野" },
+      { "title": "英語Ⅲ", "teacher": "ウェスリー" },
+      { "title": "英語Ⅰ", "teacher": "脇濱" }
     ],
     "Thu": [
-      { "title": "数学", "teacher": "田中先生" },
-      { "title": "化学", "teacher": "中村先生" },
-      { "title": "英語", "teacher": "佐藤先生" },
-      { "title": "歴史", "teacher": "森田先生" },
-      { "title": "情報", "teacher": "石井先生" },
-      { "title": "選択A", "teacher": "選択担当" }
+      { "title": "数C", "teacher": "藤倉" },
+      { "title": "数Ⅲ", "teacher": "望月" },
+      { "title": "物理", "teacher": "永江" },
+      { "title": "体育", "teacher": "吉田薫" },
+      { "title": "化学", "teacher": "淡野" },
+      { "title": "英語Ⅰ", "teacher": "脇濱" }
     ],
     "Fri": [
-      { "title": "英語", "teacher": "佐藤先生" },
-      { "title": "現代文", "teacher": "伊藤先生" },
-      { "title": "数学", "teacher": "田中先生" },
-      { "title": "物理", "teacher": "高橋先生" },
-      { "title": "選択B", "teacher": "選択担当" },
-      { "title": "LHR", "teacher": "担任" }
+      { "title": "古文", "teacher": "野谷" },
+      { "title": "数Ⅲ", "teacher": "望月" },
+      { "title": "英語Ⅲ", "teacher": "ウェスリー" },
+      { "title": "英語Ⅱ", "teacher": "川崎" },
+      { "title": "現代文", "teacher": "山藤" },
+      { "title": "体育", "teacher": "吉田薫" }
     ],
     "Sat": [
-      { "title": "数学", "teacher": "田中先生" },
-      { "title": "英語", "teacher": "佐藤先生" },
-      { "title": "理科", "teacher": "理科担当" },
-      { "title": "社会", "teacher": "社会担当" }
+      { "title": "漢文", "teacher": "神保" },
+      { "title": "英語Ⅰ", "teacher": "脇濱" },
+      { "title": "化学", "teacher": "淡野" },
+      { "title": "数演習", "teacher": "小宮" }
     ]
   },
   "weekB": {
-    "Mon": [
-      { "title": "英語", "teacher": "佐藤先生" },
-      { "title": "数学", "teacher": "田中先生" },
-      { "title": "化学", "teacher": "中村先生" },
-      { "title": "体育", "teacher": "山本先生" },
-      { "title": "美術", "teacher": "小林先生" },
-      { "title": "現代文", "teacher": "伊藤先生" }
-    ],
-    "Tue": [
-      { "title": "数学", "teacher": "田中先生" },
-      { "title": "英語", "teacher": "佐藤先生" },
-      { "title": "物理", "teacher": "高橋先生" },
-      { "title": "地理", "teacher": "斎藤先生" },
-      { "title": "音楽", "teacher": "松本先生" },
-      { "title": "情報", "teacher": "石井先生" }
-    ],
-    "Wed": [
-      { "title": "英語", "teacher": "佐藤先生" },
-      { "title": "現代文", "teacher": "伊藤先生" },
-      { "title": "数学", "teacher": "田中先生" },
-      { "title": "生物", "teacher": "鈴木先生" },
-      { "title": "体育", "teacher": "山本先生" },
-      { "title": "美術", "teacher": "小林先生" }
-    ],
-    "Thu": [
-      { "title": "化学", "teacher": "中村先生" },
-      { "title": "数学", "teacher": "田中先生" },
-      { "title": "英語", "teacher": "佐藤先生" },
-      { "title": "歴史", "teacher": "森田先生" },
-      { "title": "情報", "teacher": "石井先生" },
-      { "title": "選択A", "teacher": "選択担当" }
-    ],
-    "Fri": [
-      { "title": "現代文", "teacher": "伊藤先生" },
-      { "title": "英語", "teacher": "佐藤先生" },
-      { "title": "数学", "teacher": "田中先生" },
-      { "title": "物理", "teacher": "高橋先生" },
-      { "title": "選択B", "teacher": "選択担当" },
-      { "title": "LHR", "teacher": "担任" }
-    ],
-    "Sat": [
-      { "title": "英語", "teacher": "佐藤先生" },
-      { "title": "数学", "teacher": "田中先生" },
-      { "title": "理科", "teacher": "理科担当" },
-      { "title": "家庭", "teacher": "家庭担当" }
-    ]
+    "Mon": [],
+    "Tue": [],
+    "Wed": [],
+    "Thu": [],
+    "Fri": [],
+    "Sat": []
   }
 }
