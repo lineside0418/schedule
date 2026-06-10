@@ -43,10 +43,7 @@ async function init() {
         scheduleData = await response.json();
         
         setupTheme();
-        determineInitialState();
-        renderWeekDisplay();
-        renderDayButtons();
-        renderSchedule(true); // 初回はアニメーションあり
+        refreshCurrentState(true);
         setupEventListeners();
         
         startClock();
@@ -73,19 +70,42 @@ function startClock() {
         
         // 00秒に状態を再チェックして、必要なら翌日表示に切り替え
         if (now.getSeconds() === 0) {
-            const oldSelectedDay = selectedDay;
-            determineInitialState();
-            if (oldSelectedDay !== selectedDay) {
-                renderDayButtons();
-                renderSchedule(true);
-            } else {
-                updateHighlightsOnly();
-            }
+            refreshCurrentState();
         }
     }
     
     setInterval(update, 1000);
     update();
+}
+
+function refreshCurrentState(withAnimation = false) {
+    if (!scheduleData) return;
+    
+    const display = document.getElementById('current-day-display');
+    if (display) {
+        const now = new Date();
+        const daysJP = ['\u65e5', '\u6708', '\u706b', '\u6c34', '\u6728', '\u91d1', '\u571f'];
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const date = String(now.getDate()).padStart(2, '0');
+        const day = daysJP[now.getDay()];
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        display.textContent = `${month}/${date}(${day}) ${hours}:${minutes}:${seconds}`;
+    }
+    
+    const oldWeek = currentWeek;
+    const oldSelectedDay = selectedDay;
+    
+    determineInitialState();
+    renderWeekDisplay();
+    renderDayButtons();
+    
+    if (oldWeek !== currentWeek || oldSelectedDay !== selectedDay || !document.querySelector('.card')) {
+        renderSchedule(withAnimation);
+    } else {
+        updateHighlightsOnly();
+    }
 }
 
 function setupTheme() {
@@ -98,7 +118,7 @@ function setupTheme() {
 function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     const metaThemeColor = document.getElementById('theme-color-meta');
-    metaThemeColor.setAttribute('content', theme === 'dark' ? '#000000' : '#ffffff');
+    metaThemeColor.setAttribute('content', theme === 'dark' ? '#0a0a0a' : '#f7f7f7');
     localStorage.setItem('theme', theme);
 }
 
@@ -194,9 +214,27 @@ function updateHighlightsOnly() {
 }
 
 function setupEventListeners() {
+    document.getElementById('refresh-button').addEventListener('click', () => {
+        refreshCurrentState(true);
+    });
+    
     document.getElementById('theme-toggle').addEventListener('click', () => {
         currentTheme = currentTheme === 'light' ? 'dark' : 'light';
         applyTheme(currentTheme);
+    });
+    
+    window.addEventListener('focus', () => {
+        refreshCurrentState();
+    });
+    
+    window.addEventListener('pageshow', () => {
+        refreshCurrentState();
+    });
+    
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) {
+            refreshCurrentState();
+        }
     });
     
     const dayBtns = document.querySelectorAll('.day-btn');
