@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f4f3ee"><meta name="color-scheme" content="light dark">
+<meta name="description" content="高校2年E組の時間割。現在と次の授業をすぐに確認。オフライン対応。">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>2E — Schedule</title>
+<link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png"><link rel="stylesheet" href="./src/style.css">
+<script type="module" src="./src/app.js"></script>
+</head>
+<body>
+<div class="app">
+<header class="topbar"><a class="brand" href="#" aria-label="今日の時間割">2E<span>/ SCHEDULE</span></a><button id="settings-open" class="icon-button" aria-label="設定を開く"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 7h16M4 17h16M8 4v6m8 4v6"/></svg></button></header>
+<main>
+<section id="access-gate" class="access-gate" aria-label="学校アカウントでログイン">
+<p class="eyebrow">SCHOOL ACCOUNT</p><h1>学校の時間割を、<br>いつでも。</h1>
+<p class="access-description"><strong>@seiko.ac.jp</strong> のGoogleアカウントでログインしてください。初回ログイン後は、オフラインでも利用できます。</p>
+<p class="settings-help"><a href="./privacy.html">データの取り扱い ↗</a></p><div id="google-button"></div><p id="auth-message" role="status" aria-live="polite">認証の準備中…</p>
+<button id="auth-cancel" class="text-button" type="button" hidden>保存済みの時間割に戻る ↗</button>
+<button id="auth-retry" class="text-button" type="button" hidden>ログインを再試行 ↗</button>
+</section>
+<div id="schedule-content" hidden>
+<section class="live-panel" aria-label="現在の授業状況"><div class="eyebrow"><span class="status-dot"></span><span id="phase-label">読み込み中</span><time id="clock">--:--:--</time></div><div id="live-content"></div><div class="progress-track"><div id="progress"></div></div></section>
+<div class="day-heading"><div><p class="eyebrow" id="day-date"></p><h1><span id="day-title">時間割</span><span class="small-label">TIMETABLE</span></h1></div><button id="today" class="text-button">今日へ <span aria-hidden="true">↗</span></button></div>
+<nav class="day-tabs" aria-label="曜日を選択"></nav>
+<div id="day-note" class="day-note"></div>
+<section id="lessons" aria-label="授業一覧"></section>
+<p class="schedule-footnote">通常時間割 · 日本時間（JST）<br>祝日・臨時休校・授業変更は反映されません</p>
+</div>
+</main>
+<footer><span>高校2年 E組</span><span id="connection">端末の時刻で自動更新</span></footer>
+</div>
+<div id="update-banner" class="update-banner" hidden><span>新しいバージョンがあります</span><button id="update-apply">更新する</button></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<dialog id="settings"><form id="settings-form"><div class="dialog-head"><div><p class="eyebrow">PREFERENCES</p><h2>設定</h2></div><button type="button" id="settings-close" class="icon-button" aria-label="設定を閉じる">✕</button></div>
+<label class="theme-label">表示テーマ<select id="theme"><option value="system">端末に合わせる</option><option value="light">ライト</option><option value="dark">ダーク</option></select></label>
+<h3>授業時刻</h3><p class="settings-help">月〜土に共通。土曜日は4限までです。</p><div id="time-inputs"></div><p id="settings-error" role="alert"></p>
+<p class="settings-help">設定はこのブラウザに保存されます。科目の略称・担当表記は提供データのまま表示しています。</p>
+<div class="dialog-actions"><button type="button" id="reset-times" class="text-button">時刻を初期値に戻す</button><button type="submit" class="primary-button">保存する</button></div>
+<div class="account-settings"><h3>学校アカウント</h3><p id="account-email" class="settings-help">未ログイン</p><p id="data-saved-at" class="settings-help"></p><button id="refresh-data" type="button" class="text-button" hidden>Googleで再認証して時間割を更新 ↗</button><button id="sign-out" type="button" class="text-button" hidden>ログアウトして保存データを削除</button><p class="settings-help">ログアウトすると、このブラウザでは次回オンラインでのGoogleログインが必要です。</p></div><div class="install-help"><h3>ホーム画面に追加</h3><button type="button" id="install" class="text-button" hidden>アプリをインストール ↗</button><p>Android：ブラウザのメニューから「ホーム画面に追加」または「アプリをインストール」。<br>iPhone：Safariの共有メニューから「ホーム画面に追加」。</p><p id="offline-status">オフライン準備中…</p><p>Schedule 2.0.0</p></div>
+</form></dialog>
+<noscript>時間割を表示するにはJavaScriptを有効にしてください。</noscript>
+</body></html>

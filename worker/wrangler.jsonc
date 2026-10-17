@@ -1,0 +1,10 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "schedule-api",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-17",
+  "vars": {
+    "GOOGLE_CLIENT_ID": "704625236424-pr10u12ngotfgtlnrik26os4lqg9sr58.apps.googleusercontent.com",
+    "ALLOWED_ORIGINS": "https://lineside0418.github.io"
+  }
+}
